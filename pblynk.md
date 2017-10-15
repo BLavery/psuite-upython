@@ -24,9 +24,11 @@ functionality to Blynk, at the expence of precious RAM memory. These same settin
 can be overridden in project file before you import blynk.
 
 Normal startup:
+
 	import pblynk 
-	b = pblynk.Blynk()  
-- connection is TCP (no ssl option)
+	b = pblynk.Blynk() 
+     
+-connection is TCP (no ssl option)
 
 Adding options:
 
