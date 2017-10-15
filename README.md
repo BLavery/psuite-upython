@@ -8,7 +8,7 @@ An integrated suite of micropython files for ESP8266. Intended to work in due co
 
 This suite of files is intended primarily for use with ESP12-based
 boards (including NodeMCU and Wemos D1-mini), but it does work for
-ESP-01, within its gpio limits.
+ESP-01, within its gpio limits. pSuite is modelled on the earlier eLua [eSuite](https://github.com/BLavery/esuite-lua).
 
 <img align="left" src="images/esp-12.png">It automates the standard startup including escape time, wifi connection and time
 setting. This leaves you to concentrate just on your project scripting: on exactly
