@@ -24,16 +24,16 @@ functionality to Blynk, at the expence of precious RAM memory. These same settin
 can be overridden in project file before you import blynk.
 
 Normal startup:
-import pblynk 
-b = pblynk.Blynk()  
-      - connection is TCP (no ssl option)
+	import pblynk 
+	b = pblynk.Blynk()  
+- connection is TCP (no ssl option)
 
 Adding options:
 
-import settings
-settings.BlynkGpioAuto=True
-import pblynk 
-b = pblynk.Blynk()  
+	import settings
+	settings.BlynkGpioAuto=True
+	import pblynk 
+	b = pblynk.Blynk()  
 
 At this point an instance is created, but it has **not** tried to connect to the Blynk cloud.  
 That is done with b.run(), which needs to be last line of script.
