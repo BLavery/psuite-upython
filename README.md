@@ -67,9 +67,9 @@ wifi.py finishes by starting webrepl on the network(s) active.
 
 This library sets a 3-hour repeating timer for the time-sync operation, correcting any RTC drift of the ESP8266.
 
-Finally, you are left with a useful asctime() function (readable timestamp) callable anytime with import snpt t=sntp.asctime().
+Finally, you are left with a useful asctime() function (readable timestamp) callable anytime with import snpt t=sntp.asctime().<img align="right" src="images/project.jpg">
 
-main.py has one more job: to launch your nominated **project file**, which you nominate in the settings file. Obviously you must build your own project file(s), but any of the examples files could be a starting point.<img align="right" src="images/project.jpg">
+main.py has one more job: to launch your nominated **project file**, which you nominate in the settings file. Obviously you must build your own project file(s), but any of the examples files could be a starting point.
 
 ## Blynk Library:
 
