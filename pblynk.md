@@ -109,7 +109,7 @@ def ticker_callback(state):
     # do anything you like  
     return new_state   or just return
 
-b.Ticker(ticker_callback, divider=40, initial_state = None, always=False)  
+b.Ticker(ticker_callback, divider=40, initial_state = None)  
 b.Ticker(None) - disables
     
 
