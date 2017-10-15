@@ -1,5 +1,5 @@
 
-# BL  P-Blynk   
+# P-Blynk   
 
 # MicroPython Blynk library for ESP8266
 
@@ -140,6 +140,8 @@ b.disconnect()
 
 b.run()   -  the main non-returning loop of the blynk engine.  Last line of python script.
 
-  
+
+
+https://github.com/BLavery/psuite-upython/blob/master/pblynk.md  
 
 This blynk is hacked down from PiBlynk: see https://github.com/BLavery/PiBlynk
