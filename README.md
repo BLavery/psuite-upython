@@ -12,9 +12,7 @@ ESP-01, within its gpio limits. pSuite is modelled on the earlier eLua [eSuite](
 
 <img align="left" src="images/esp-12.png">pSuite automates the standard startup including escape time, wifi connection and time
 setting. This leaves you to concentrate just on your project scripting: on exactly
-what you want to control. Included is a collection of drop-in library
-files for many common devices. The library files are generally fairly
-practical and needing minimal configuration in your project.
+what you want to control. Included are libraries for blynk and oled display. More are intended later.
 
 <img align="right" src="images/esp01.jpg">The pSuite projects are intended to be used as client (“STATION” mode)
 in conjunction with a nearby wifi access point. The ESP8266 is a
