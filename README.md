@@ -63,13 +63,13 @@ If wifi has by now auto-connected as client to your local network, there is noth
 
 wifi.py finishes by starting webrepl on the network(s) active.
 
-Then main.py calls **sntp.py**, which makes as many as 4 attempts to fetch internet time. You nominate in your settings file two ntp servers to use.
+<img align="left" src="images/time1.png">Then main.py calls **sntp.py**, which makes as many as 4 attempts to fetch internet time. You nominate in your settings file two ntp servers to use.
 
 This library sets a 3-hour repeating timer for the time-sync operation, correcting any RTC drift of the ESP8266.
 
-<img align="right" src="images/time1.png">Finally, you are left with a useful asctime() function (readable timestamp) callable anytime with import snpt t=sntp.asctime().
+Finally, you are left with a useful asctime() function (readable timestamp) callable anytime with import snpt t=sntp.asctime().
 
-main.py has one more job: to launch your nominated **project file**, which you nominate in the settings file. Obviously you must build your own project file(s), but any of the examples files could be a starting point.<img align="left" src="images/project.jpg">
+main.py has one more job: to launch your nominated **project file**, which you nominate in the settings file. Obviously you must build your own project file(s), but any of the examples files could be a starting point.<img align="right" src="images/project.jpg">
 
 ## Blynk Library:
 
