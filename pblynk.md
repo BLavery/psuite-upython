@@ -5,7 +5,7 @@
 
 ## Intro
 
-A single py file for blynk is too large to load in the ESP8266 available memory. It's the initial loading process that uses most memory, and the bytecode itself once loaded is (just) workable in the memory available. I have tried to use the mpy-cross compiler to convert it to mpy bytecode, so far without success. I find certain syntax constructions that run in py code fail in mpy code. There may be a solution, but I haven't found it yet.
+<img align="left" src="images/blynk.jpg">A single py file for blynk is too large to load in the ESP8266 available memory. It's the initial loading process that uses most memory, and the bytecode itself once loaded is (just) workable in the memory available. I have tried to use the mpy-cross compiler to convert it to mpy bytecode, so far without success. I find certain syntax constructions that run in py code fail in mpy code. There may be a solution, but I haven't found it yet.
 
 So the blynk library in pSuite is in py file(s) and is loaded in stages. You import pblynk.py and that chains to several files blynk_1.py, blynk_2.py etc automatically. The code is a crude stitch-together that does actually work. 
 

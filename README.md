@@ -10,7 +10,7 @@ This suite of files is intended primarily for use with ESP12-based
 boards (including NodeMCU and Wemos D1-mini), but it does work for
 ESP-01, within its gpio limits. pSuite is modelled on the earlier eLua [eSuite](https://github.com/BLavery/esuite-lua).
 
-<img align="left" src="images/esp-12.png">It automates the standard startup including escape time, wifi connection and time
+<img align="left" src="images/esp-12.png">pSuite automates the standard startup including escape time, wifi connection and time
 setting. This leaves you to concentrate just on your project scripting: on exactly
 what you want to control. Included is a collection of drop-in library
 files for many common devices. The library files are generally fairly
@@ -26,7 +26,7 @@ The micropython environment uses the SOC native numbers for GPIO pins (0 1 ... 1
 
 ## Disclaimer/Claimer:
 
-As at October 2017, this project is merely "bare-bones". Please consider it as 0.1 alpha. However, it DOES run.
+<img align="right" src="images/d1.jpg">As at October 2017, this project is merely "bare-bones". Please consider it as 0.1 alpha. However, it DOES run.
 
 It is groundwork for a proposed class starting in 2018. My classes tend to prefer interpreter environments rather than compiler. The nodemcu eLua interpreter based on the "non-OS" SDK has occupied this position for ESP8266 until now. It has been stable, well documented and effective.
 
@@ -46,7 +46,7 @@ And faux-python is a lot more mainstream than lua. And more student friendly tha
 1. sntp.py
 1. settings.py
 
-These are always used. boot.py and main.py are as mandated by micropython. main.py imports wifi and sntp to start comunication and fetch real time. 
+<img align="right" src="images/init.png">These are always used. boot.py and main.py are as mandated by micropython. main.py imports wifi and sntp to start comunication and fetch real time. 
 main then passes control to
 your individual “project” file. So the standard minimum is five files, plus your project.
 
@@ -57,7 +57,7 @@ The compulsory **settings.py** is intended as a general-purpose config file easi
 
 **main.py** turns on for 2 seconds the led inbuilt to the ESP12 submodule. At the end of that period, the flash button ("D3" / gpio-0) is sampled. If pressed, processing terminates there. This gives you an escape mechanism in the case a script error is causing repeated reboots.
 
-main.py then calls **wifi.py**. If your settings have nominated an AP mode password, then the ESP8266 AP server will start up on 192.168.4.1.  
+<img align="right" src="images/wifi.png">main.py then calls **wifi.py**. If your settings have nominated an AP mode password, then the ESP8266 AP server will start up on 192.168.4.1.  
 
 If wifi has by now auto-connected as client to your local network, there is nothing more to do. Otherwise, each router credential listed in settings.py (and provided it is seen in a scan) will be tried for login. Its IP will display to terminal.
 
@@ -67,9 +67,9 @@ Then main.py calls **sntp.py**, which makes as many as 4 attempts to fetch inter
 
 This library sets a 3-hour repeating timer for the time-sync operation, correcting any RTC drift of the ESP8266.
 
-Finally, you are left with a useful asctime() function (readable timestamp) callable anytime with import snpt t=sntp.asctime().
+<img align="right" src="images/time1.png">Finally, you are left with a useful asctime() function (readable timestamp) callable anytime with import snpt t=sntp.asctime().
 
-main.py has one more job: to launch your nominated **project file**, which you nominate in the settings file. Obviously you must build your own project file(s), but any of the examples files could be a starting point.
+main.py has one more job: to launch your nominated **project file**, which you nominate in the settings file. Obviously you must build your own project file(s), but any of the examples files could be a starting point.<img align="left" src="images/project.jpg">
 
 ## Blynk Library:
 
@@ -81,7 +81,7 @@ On micropython, a key consideration is shortage of RAM memory, and blynk needs a
 
 ## Oled library:
 
-oled.py is a wrapper to the usual sd1306.py module for ESP8266/ESP32. If an I2C scan shows oled is present, it initialises the display and presents initial info on IP number and time.  Thereafter, you use oled calls as per the framebuf documentation. 
+<img align="right" src="images/oled.jpg">oled.py is a wrapper to the usual sd1306.py module for ESP8266/ESP32. If an I2C scan shows oled is present, it initialises the display and presents initial info on IP number and time.  Thereafter, you use oled calls as per the framebuf documentation. 
 
 ## "Build" and IDE?
 
