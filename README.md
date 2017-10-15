@@ -81,7 +81,10 @@ On micropython, a key consideration is shortage of RAM memory, and blynk needs a
 
 ## Oled library:
 
-<img align="right" src="images/oled.jpg">oled.py is a wrapper to the usual sd1306.py module for ESP8266/ESP32. If an I2C scan shows oled is present, it initialises the display and presents initial info on IP number and time.  Thereafter, you use oled calls as per the framebuf documentation. 
+<img align="right" src="images/oled.jpg">In the classrom environment where eSuite & pSuite are targetted, 
+an oled display is commonly used, usually the 128x64 "0.96 inch" ubiquitous module. It is easy, cheap and versatile.
+
+**oled.py** is a wrapper to the usual sd1306.py module for ESP8266/ESP32. If an I2C scan shows oled is present, it initialises the display and presents initial info on IP number and time.  Thereafter, you use oled calls as per the framebuf documentation. 
 
 ## "Build" and IDE?
 
