@@ -88,17 +88,20 @@ The callbacks are like this, and should be def'd before doing the add_xxx_pin():
 		# NOTE: "value" is a LIST, so you need to unpack eg value[0] etc  
 		# access the necessary virtual output and write the value
 		return
-    
+
+Then you assign your gpio or virtual pins like this:
+
 	b.add_digital_hw_pin(pin=pin_number, read=digital_read_callback, inital_state=None)  
 	b.add_digital_hw_pin(pin=pin_number, write=digital_write_callback, inital_state=None)  
 	b.add_virtual_pin(vpin_number, read=virtual_read_callback, inital_state=None)  
 	b.add_virtual_pin(vpin_number, write=virtual_write_callback, inital_state=None)  
 		# in this context, write means "APP writes to HW" and read is "APP polls HW expecting HW reply"
 
-initial_state is an optional payload of one value.
-That one value may possibly be a LIST of values if you want to pass several  
-gpio  pins are actual GPIO pin numbers   
-virtual pins are 0 - 40
+-  initial_state is an optional payload of one value.
+-  That one initial-state value may possibly be one LIST of values if you want to really pass several.  
+-  Gpio pins are actual GPIO hardware numbers.   
+-  Virtual pins are 0 - 40.
+-  There is no support for analog pins. Use a virtual pin as needed.
 
 ## User Task: the "Ticker":
 
@@ -108,16 +111,16 @@ It is possible to set up one periodic user task known as the Ticker. This is a f
   
 Ticker is a repeating function 
 
--  callback suspends blynk until its return.  
+-  Callback suspends blynk until its return. Not concurrent. 
 -  Register and start (one only) simple "ticker" function callback.  
--  "divider" (default 40) divides into 200 to give ticker frequency. eg divider 100 gives 2 ticks / sec.  
--  Ticker should exit promptly to not hold up blynk.  
-    (eg 3 mSec would be considered quite too long.)
+-  "divider" (default 40) divides into 200 to give ticker frequency. eg divider 100 gives 2 ticks / sec.
+-  Ticker should exit promptly to not hold up blynk. (eg 3 mSec would be considered quite too long.)
+-  Use "state" to carry any data between calls.
 
 
       
 	def ticker_callback(state):  
-		# do anything you like  
+		# do anything you like. Might be complex or long, but it should be still fast. 
 		return new_state   # or just return
 
 	b.Ticker(ticker_callback, divider=40, initial_state = None)  
