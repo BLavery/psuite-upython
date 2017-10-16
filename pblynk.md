@@ -57,7 +57,7 @@ b.run() is a **blocking function**, and does NOT return to your script.
 	b.gpio_auto(Pull)  # where Pull = machine.Pin.PULL_UP or is omitted.
     
 This causes all GPIOs that the phone APP is configured for will be 
-automatically configured as inputs or outputs on the ESP8266. And GPIO
+automatically configured as inputs or outputs on the ESP8266. And all GPIO
 writes or reads (polls) issued by the APP will be handled at the ESP
 without explicit coding. This function must be pre-optioned as above before importing blynk. 
 
