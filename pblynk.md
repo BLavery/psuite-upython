@@ -116,6 +116,7 @@ Ticker is a repeating function
 -  "divider" (default 40) divides into 200 to give ticker frequency. eg divider 100 gives 2 ticks / sec.
 -  Use "state" to carry any data between calls.
 
+Define your callback, then register your Ticker (before b.run()):
 
 	def ticker_callback(state):  
 		# do anything you like. Might be complex or long, but it should be still fast. 
