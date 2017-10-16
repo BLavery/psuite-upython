@@ -12,7 +12,7 @@ So the blynk library in pSuite is in py file(s) and is loaded in stages. You imp
 
 But be aware that the blynk library still leaves available RAM low (about 9-10 kB), and if your "project" code grows large, you should expect memory crashes. Use blynk for modest projects.
 
-On your APP, use device type = **ESP8266**. GPIO numbers are native chip GPIO references, not D0 D1 etc as labelled on some boards.
+On your APP, use device type = **esp8266**. GPIO numbers are native chip GPIO references, not D0 D1 etc as labelled on some boards.
 
 ## Creating the blynk object
 
@@ -54,7 +54,7 @@ b.run() is a **blocking function**, and does NOT return to your script.
 ## GPIO control with zero coding
 
 
-	b.gpio_auto(Pull)  # where Pull = Pin.PULL_UP or is omitted.
+	b.gpio_auto(Pull)  # where Pull = machine.Pin.PULL_UP or is omitted.
     
 This causes all GPIOs that the phone APP is configured for will be 
 automatically configured as inputs or outputs on the ESP8266. And GPIO
@@ -63,7 +63,7 @@ without explicit coding. This function must be pre-optioned as above before impo
 
 The optional resistor pullup will apply to ALL the gpio autoconfigured as inputs.
  
-Note that in many practical cases this will not be adequate, and custom coding is needed instead, as in the next section. 
+Note that in many practical cases this will be too simplistic, and then custom coding is needed instead, as in the next section. 
 
 
 ## GPIO & Virtual Read & Write Callbacks
@@ -73,19 +73,17 @@ The callbacks are like this, and should be def'd before doing the add_xxx_pin():
 
 	def digital_read_callback(pin, state):  
 		digital_value = xxx       # access your hardware  
-		return digital_value  #  or None (and then your own code should do the wanted write()    
-			#     but the "correct" way is to "return" the value to APP  
+		return digital_value 
     
 	def digital_write_callback(value, pin, state):  
 		# access the necessary digital output and write the value  
-		return    
+		return
 
-   
 	def virtual_read_callback(pin, state):  
 		virtual_value = 'Anything'       # access your hardware  
-		return virtual_value    #  return may be None, or a single value, or a list of values (eg for LCD)  
-			# if using return None, then arrange own write back to APP,  
-			# but the "correct" way is to "return" the value to APP 
+		return virtual_value    #  return may be None, or a single value, or a list of values  
+		# if using return None, then arrange own virtual.write() back to APP,  
+		# but the "correct" way is to "return" the value to APP 
             
 	def virtual_write_callback(value, pin, state):  
 		# NOTE: "value" is a LIST, so you need to unpack eg value[0] etc  
@@ -98,7 +96,7 @@ Then you assign your gpio or virtual pins like this:
 	b.add_digital_hw_pin(pin=pin_number, write=digital_write_callback, inital_state=None)  
 	b.add_virtual_pin(vpin_number, read=virtual_read_callback, inital_state=None)  
 	b.add_virtual_pin(vpin_number, write=virtual_write_callback, inital_state=None)  
-		# in this context, write means "APP writes to HW" and read is "APP polls HW expecting HW reply"
+	# in this context, write means "APP writes to 8266 HW" and read is "APP polls HW expecting HW reply"
 
 -  initial_state is an optional payload of one value.
 -  That one initial-state value may possibly be one LIST of values if you want to really pass several.  
@@ -114,10 +112,10 @@ It is possible to set up one periodic user task known as the Ticker. This is a f
   
 Ticker is a repeating function 
 
--  Callback suspends blynk until its return. Not concurrent. Ticker should exit promptly to not hold up blynk. (eg 3 mSec would be considered quite too long.)
 -  Register and start (one only) simple "ticker" function callback.  
--  "divider" (default 40) divides into 200 to give ticker frequency. eg divider 100 gives 2 ticks / sec.
+-  "divider" (default 40) divides into 200 to give ticker frequency. eg divider 100 gives 2 ticks / sec. Don't rely strictly on the timing. It may stretch slightly if blynk is busy.
 -  Use "state" to carry any data between calls.
+-  Callback suspends blynk until its return. Not concurrent. Ticker should exit promptly to not hold up blynk. (eg 3 mSec would be considered quite too long.)
 
 Define your callback, then register your Ticker:
 
@@ -136,19 +134,23 @@ Define your callback, then register your Ticker:
 The following bridge group need to be optioned on in your settings:
 
 	bridge = b.bridge_widget(my_vpin_number)   # all writes to this widget get bridged to other HW  
-	bridge.set_auth_token(target_token)  # but first wait until "connected" !  
+	bridge.set_auth_token(target_token)  # but first wait until "connected"! Use a on_connect() callback. 
 	bridge.virtual_write(target_vpin, val)  # val = single param only, no lists  
 	bridge.digital_write(target_gpiopin, val) 
 
+*A "bridge" allows you to send writes across to another MCU also running blynk (RPi, 8266, etc). You devote one of your virtual pins as a channel via the server to the other device. And you need to know the separate token (on your blynk account) used by the other hardware.*
+
 This next extras group also needs to be optioned on in your settings:
       
+	b.lcd_print(vpinnumber, x, y, message) #  x=0-15   y=0-1  "advanced" mode at APP
 	b.lcd_cls(vpinnumber)  
-	b.lcd_print(vpinnumberx, y, message) #  x=0-15   y=0-1
-	b.email([to,] subject, body)  
-	b.tweet(message_text)  
-	b.virtual_write(vpin_number, value)  # value = either single value (int/str) or list of values.  
+	b.email([to,] subject, body) # don't forget email widget on APP! 
+	b.tweet(message_text)  # (same)
+	b.virtual_write(vpin_number, value)
+		# value = either single value (int/str) or list of values.  
 		# For ad-hoc writing to a vpin (ie toward APP),  
-		# without necessarily having done add_virtual_pin()  
+		# without necessarily having done add_virtual_pin()
+		# For this context, write means 8266 to APP
 	b.set_property(vpin, property, value)  
 		#  eg "color", "#ED9D00"    or "label"/"labels" "onLabel" etc  
     
