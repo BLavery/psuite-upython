@@ -116,27 +116,28 @@ Ticker is a repeating function
 -  "divider" (default 40) divides into 200 to give ticker frequency. eg divider 100 gives 2 ticks / sec.
 -  Use "state" to carry any data between calls.
 
-Define your callback, then register your Ticker (before b.run()):
+Define your callback, then register your Ticker:
 
 	def ticker_callback(state):  
 		# do anything you like. Might be complex or long, but it should be still fast. 
+		# Examine gpio pins? Do a virtual pin write? print to terminal or oled? ...
 		return new_state   # or just return
 	b.Ticker(ticker_callback, divider=40, initial_state = None)  
-	b.Ticker(None) # disables
+	b.Ticker(None) # disables !
     
 
-## Software widgets at python end:
+## Software functions and widgets at python end:
 
 	b.notify(message_text)
 
-The following group need to be optioned on in your settings:
+The following bridge group need to be optioned on in your settings:
 
 	bridge = b.bridge_widget(my_vpin_number)   # all writes to this widget get bridged to other HW  
 	bridge.set_auth_token(target_token)  # but first wait until "connected" !  
 	bridge.virtual_write(target_vpin, val)  # val = single param only, no lists  
 	bridge.digital_write(target_gpiopin, val) 
 
-This next group also needs to be optioned on in your settings:
+This next extras group also needs to be optioned on in your settings:
       
 	b.lcd_cls(vpinnumber)  
 	b.lcd_print(vpinnumberx, y, message) #  x=0-15   y=0-1
@@ -148,14 +149,16 @@ This next group also needs to be optioned on in your settings:
 	b.set_property(vpin, property, value)  
 		#  eg "color", "#ED9D00"    or "label"/"labels" "onLabel" etc  
     
+The main non-returning loop of the blynk engine:
+
+	b.run()    # Last line of python script 
+
+And ...
+
 	b.on_connect(connect_callback)  
 	b.on_disconnect(disconnect_callback)  
 	b.connect()  
 	b.disconnect()
-
-	b.run()   #  the main non-returning loop of the blynk engine.  Last line of python script.
-
-
 
 https://github.com/BLavery/psuite-upython/blob/master/pblynk.md  
 
