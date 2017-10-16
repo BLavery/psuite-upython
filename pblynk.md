@@ -111,18 +111,15 @@ It is possible to set up one periodic user task known as the Ticker. This is a f
   
 Ticker is a repeating function 
 
--  Callback suspends blynk until its return. Not concurrent. 
+-  Callback suspends blynk until its return. Not concurrent. Ticker should exit promptly to not hold up blynk. (eg 3 mSec would be considered quite too long.)
 -  Register and start (one only) simple "ticker" function callback.  
 -  "divider" (default 40) divides into 200 to give ticker frequency. eg divider 100 gives 2 ticks / sec.
--  Ticker should exit promptly to not hold up blynk. (eg 3 mSec would be considered quite too long.)
 -  Use "state" to carry any data between calls.
 
 
-      
 	def ticker_callback(state):  
 		# do anything you like. Might be complex or long, but it should be still fast. 
 		return new_state   # or just return
-
 	b.Ticker(ticker_callback, divider=40, initial_state = None)  
 	b.Ticker(None) # disables
     
