@@ -1,7 +1,7 @@
 
 # P-Blynk   
 
-# MicroPython Blynk library for ESP8266
+# A MicroPython Blynk library for ESP8266
 
 ## Intro
 
@@ -16,18 +16,23 @@ On your APP, use **ESP8288 device type**. GPIO numbers are native chip GPIO refe
 Your blynk token should be edited in your settings.py file.There are also 3 blynk options in settings:
 
 -   BlynkBridge
--   BlynkExtras
+-   BlynkExtras (sync, tweet, setproperty, lcd, email)
 -   BlynkGpioAuto. 
 
 These if True will add extra
-functionality to Blynk, at the expence of precious RAM memory. These same settings
+functionality to Blynk, at the expense of precious RAM memory. These same settings
 can be overridden in project file before you import blynk.
 
 Normal startup:
 
 	import pblynk 
 	b = pblynk.Blynk() 
-     
+
+or in full:
+
+	b = pblynk.Blynk(token, server, port, connect) 
+	# defaults = settings.Token, "blynk-cloud.com", 8442, True 
+
 -connection is TCP (no ssl option)
 
 Adding options:
@@ -91,7 +96,7 @@ b.add_virtual_pin(vpin_number, write=virtual_write_callback, inital_state=None)
 initial_state is an optional payload of one value   
     That one value may possibly be a LIST of values if you want to pass several  
 gpio  pins are actual GPIO pin numbers   
-virtual pins are 0 - 127
+virtual pins are 0 - 40
 
 ## User Tasks:
 
