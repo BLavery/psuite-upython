@@ -2,14 +2,17 @@
 # P-Blynk   
 
 # A MicroPython Blynk library for ESP8266
+<img align="right" src="images/blynk.jpg">
 
 ## Intro
 
-<img align="left" src="images/blynk.jpg">A single py file for blynk is too large to load in the ESP8266 available memory. It's the initial loading process that uses most memory, and once it's loaded and compiled to bytecode it is (just) workable in the memory available. I have tried to use the mpy-cross compiler to convert it to mpy bytecode, so far without success. I find certain syntax constructions that run in py code fail in mpy code. There may be a solution, but I haven't found it yet.
+A single py file for blynk is too large to load in the ESP8266 available memory. It's the initial loading process that uses most memory, and once it's loaded and compiled to bytecode it is (just) workable in the memory available. I have tried to use the mpy-cross compiler to convert it to mpy bytecode, so far without success. I find certain syntax constructions that run in py code fail in mpy code. There may be a solution, but I haven't found it yet.
 
 So the blynk library in pSuite is in py file(s) and is loaded in stages. You import pblynk.py and that chains to several files blynk_1.py, blynk_2.py etc automatically. The code is a crude stitch-together that does actually work. 
 
-On your APP, use **ESP8288 device type**. GPIO numbers are native chip GPIO references, not D0 D1 etc as labelled on some boards.
+But be aware that the blynk library still leaves available RAM low (about 9-10 kB), and if your "project" code grows large, you should expect memory crashes. Use blynk for modest projects.
+
+On your APP, use device type = **ESP8266**. GPIO numbers are native chip GPIO references, not D0 D1 etc as labelled on some boards.
 
 ## Creating the blynk object
 
@@ -60,7 +63,7 @@ without explicit coding. This function must be pre-optioned as above before impo
 
 The optional resistor pullup will apply to ALL the gpio autoconfigured as inputs.
  
-Note that in many practical cases this will not be adequate, and custom coding is needed instead, as below. 
+Note that in many practical cases this will not be adequate, and custom coding is needed instead, as in the next section. 
 
 
 ## GPIO & Virtual Read & Write Callbacks
