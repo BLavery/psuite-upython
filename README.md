@@ -12,7 +12,7 @@ ESP-01, within its gpio limits. pSuite is modelled on the earlier eLua [eSuite](
 
 <img align="left" src="images/esp-12.png">pSuite automates the standard startup including escape time, wifi connection and time
 setting. This leaves you to concentrate just on your project scripting: on exactly
-what you want to control. Included are libraries for blynk and oled display. More are intended later.
+what you want to control. Included are libraries for blynk and oled display. More libraries are intended later.
 
 <img align="right" src="images/esp01.jpg">The pSuite projects are intended to be used as client (“STATION” mode)
 in conjunction with a nearby wifi access point. The ESP8266 is a
@@ -34,7 +34,7 @@ I believe the interpreter future is micropython. The ESP8266 micropython has rea
 
 The ESP32 micropython build is published for trying, but clearly a lot of work remains. It seems to be undocumented, but I am hoping it is a fairly faithful clone of the ESP8266 version. It is missing some functions (eg RTC), and has debug traces all over. At the moment (Oct 2017) I am hoping on the two micropython builds to be a good foundation for a 2018 IoT class! ESP8266 - a surety, ESP32 - let's see.
 
-And faux-python is a lot more mainstream than lua. And more student friendly than faux-arduino faux-C++ or hardcore IDE/rtos C.
+And faux-python is a lot more mainstream than lua. And more student friendly than faux-arduino faux-C++ or hardcore SDK/rtos C.
 
 ## Common startup files:
 
@@ -57,7 +57,7 @@ The compulsory **settings.py** is intended as a general-purpose config file easi
 
 <img align="right" src="images/wifi.png">main.py then calls **wifi.py**. If your settings have nominated an AP mode password, then the ESP8266 AP server will start up on 192.168.4.1.  
 
-If wifi has by now auto-connected as client to your local network, there is nothing more to do. Otherwise, each router credential listed in settings.py (and provided it is seen in a scan) will be tried for login. Its IP will display to terminal.
+If wifi has by now auto-connected as client to your local network, there is nothing more to do. Otherwise, each router credential listed in settings.py (and provided it is seen in a scan) will be tried for login. The connected IP will display to terminal.
 
 wifi.py finishes by starting webrepl on the network(s) active.
 
