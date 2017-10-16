@@ -9,15 +9,15 @@ if 60 in set(_i2c.scan()):
     _t=sntp.asctime()
     _ip=network.WLAN(network.STA_IF).ifconfig()[0]
     _dot2=_ip.index('.', _ip.index('.') + 1)
-    # fits 64x48
-    oled.text("pSuite",0,0,1)
+    # squeezed to 64x48 oled as per wemos D1 shield
+    oled.text("pSuite",0,0,1) # txt, x, y, colour
     oled.text(_ip[0:_dot2+1] ,0,10,1)
     oled.text(_ip[_dot2+1:] ,6,20,1)
-    oled.text(_t[11:],0,30,1) # time
-    oled.text(_t[0:6]+_t[8:10],0,40,1) # date yy not yyyy (D1 mini oled)
+    oled.text(_t[11:],0,30,1)
+    oled.text(_t[0:6]+_t[8:10],0,40,1) # date yy not yyyy ( fits D1 mini oled)
     oled.show()
 
 # better layout option for 128x64 display?
 
-# see framebuf calls: oled uses those:  0=black 1=white
+# see framebuf calls: oled uses framebuf:  0=black 1=white
 #     http://docs.micropython.org/en/latest/esp8266/library/framebuf.html#module-framebuf
