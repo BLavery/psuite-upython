@@ -37,11 +37,12 @@ or in full:
 
 Adding options:
 
-	import settings
+	import settings, machine
 	settings.BlynkGpioAuto=True
 	import pblynk 
 	b = pblynk.Blynk()  
-
+	b.gpio_auto(machine.Pin.PULL_UP)
+    
 At this point an instance is created, but it has **not** tried to connect to the Blynk cloud.  
 That is done with b.run(), which needs to be last line of script.
 b.run() is a **blocking function**, and does NOT return to your script. 
