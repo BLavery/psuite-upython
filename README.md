@@ -1,7 +1,8 @@
 ## P-Suite
 
 <img align="right" src="images/nodemcu.png">
-An integrated suite of micropython files for ESP8266. Intended to work in due course with ESP32 also.
+An integrated suite of micropython files for ESP8266.
+Based on [micropython.org version](http://micropython.org/download).
 
 
 ## Overview:
@@ -28,13 +29,17 @@ The micropython environment uses the SOC native numbers for GPIO pins (0 1 ... 1
 
 It is groundwork for a proposed class starting in 2018. My classes tend to prefer interpreter environments rather than compiler. The nodemcu eLua interpreter based on the "non-OS" SDK has occupied this position for ESP8266 until now. It has been stable, well documented and effective.
 
-For the ESP32, there are currently at least 3 lua development attempts "out there". Espressif has terminated the "non-OS" SDK used by the original "nodemcu" lua, and is now offering only the free-rtos SDK (a much better long-view choice). I can't find a lua worth using, or usably documented. I am suspecting the wind is out of the lua sails.
+For the ESP32, there are currently at least 3 lua development attempts "out there". Espressif has terminated the "non-OS" SDK used by the original "nodemcu" lua, and is now offering only the free-rtos SDK (a much better long-view choice). I can't find a lua worth using, or usably documented. Maybe the wind is out of the lua sails.
 
-I believe the interpreter future is micropython. The ESP8266 micropython has reached workable status, and its documentation is reasonable if not quite finished. 
+I believe the interpreter future is probably micropython. The ESP8266 micropython has reached workable status, and its documentation is reasonable if not quite finished. 
 
-The ESP32 micropython build is published for trying, but clearly a lot of work remains. It seems to be undocumented, but I am hoping it is a fairly faithful clone of the ESP8266 version. It is missing some functions (eg RTC), and has debug traces all over. At the moment (Oct 2017) I am hoping on the two micropython builds to be a good foundation for a 2018 IoT class! ESP8266 - a surety, ESP32 - let's see.
+*The ESP32 micropython build is published for trying, but clearly a lot of work remains. It seems to be undocumented, but perhaps it will become a fairly faithful clone of the ESP8266 version.*
 
 And faux-python is a lot more mainstream than lua. And more student friendly than faux-arduino faux-C++ or hardcore SDK/rtos C.
+
+All that said, where is micropython/esp really headed? At micropython, the esp8266 kickstarter campaign is about done. Adafruit's CircuitPython fork is racing away separately. On ESP32, the trumpetted marriage 9 months ago between Pycom & the main micropython seems marked by silence.
+
+So the efforts as documented below are laid out in hope they may be useful to some. Will they expand to a class here in 2018? We'll see.
 
 ## Common startup files:
 
