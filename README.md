@@ -4,6 +4,8 @@
 An integrated suite of micropython files for ESP8266.
 Based on [micropython.org version](http://micropython.org/download).
 
+## May 2018 - This is no longer being maintained by the original author.
+## Please feel free to fork, copy, adapt if you find it useable
 
 ## Overview:
 
